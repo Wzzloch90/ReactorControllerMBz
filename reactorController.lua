@@ -537,7 +537,7 @@ local function reDrawButtons()
 end
 
 local function setRods(level)
-    level = math.max(level, 0)
+    level = math.max(level, 98)
     level = math.min(level, 100)
     reactor.setAllControlRodLevels(level)
 end
@@ -567,34 +567,34 @@ end
 
 --adjusts the level of the rods
 local function adjustRods()
-    local currentRF = storedThisTick
-    local diffb = maxb - minb
-    maxRF = maxb / 100 * capacity
-    minRF = minb / 100 * capacity
-    diffRF = diffb / 100 * capacity
-    local diffr = diffb / 100
-    local targetRFT = rfLost
-    local currentRFT = lastRFT
-    local diffRFT = currentRFT/targetRFT
-    local targetRF = diffRF / 2 + minRF
+--    local currentRF = storedThisTick
+--    local diffb = maxb - minb
+--    maxRF = maxb / 100 * capacity
+--    minRF = minb / 100 * capacity
+--    diffRF = diffb / 100 * capacity
+--    local diffr = diffb / 100
+--    local targetRFT = rfLost
+--    local currentRFT = lastRFT
+--    local diffRFT = currentRFT/targetRFT
+--    local targetRF = diffRF / 2 + minRF
 
-    currentRF = math.min(currentRF, maxRF)
-    local equation1 = math.min((currentRF - minRF)/diffRF, 1)
-    equation1 = math.max(equation1, 0)
+--    currentRF = math.min(currentRF, maxRF)
+--    local equation1 = math.min((currentRF - minRF)/diffRF, 1)
+--    equation1 = math.max(equation1, 0)
     
-	local rodLevel = rod
-    if (storedThisTick < minRF) then
-        rodLevel = 0
-    elseif ((storedThisTick < maxRF and storedThisTick > minRF)) then
-        equation1 = equation1 * (currentRF / targetRF) --^ 2
-        equation1 = equation1 * diffRFT --^ 5
-        equation1 = equation1 * 100
+--	local rodLevel = rod
+--   if (storedThisTick < minRF) then
+--        rodLevel = 0
+--    elseif ((storedThisTick < maxRF and storedThisTick > minRF)) then
+--        equation1 = equation1 * (currentRF / targetRF) --^ 2
+--        equation1 = equation1 * diffRFT --^ 5
+--        equation1 = equation1 * 100
 
-        rodLevel = equation1
-    elseif (storedThisTick > maxRF) then
-        rodLevel = 100
-    end
-    setRods(rodLevel)
+--        rodLevel = equation1
+--    elseif (storedThisTick > maxRF) then
+--        rodLevel = 100
+--    end
+--    setRods(rodLevel)
 end
 
 --Saves the configuration of the reactor controller
